@@ -1,0 +1,167 @@
+# git使用方法
+
+## 基本用法
+
+### 设置`user.name`和`user.email`
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+```
+
+其中`--global`参数，表示这台机器所有的Git仓库都会用这个配置
+
+### 创建版本库
+
+在目的目录使用`git init`创建仓库
+```
+git init
+```
+
+### 把文件添加到版本库
+
+```
+git add file.md
+```
+
+### 把文件提交到仓库
+
+```
+git commit -m "输入说明"
+```
+
+### 添加远程库
+
+```
+git remote add origin https://github.com/Mingg817/gittry.git
+
+git remote add origin git@github.com:Mingg817/gittry.git
+```
+
+添加后，`origin`就是远程库的名字
+
+### 删除远程库
+
+先查看现有的远程库
+```
+git remote -v
+```
+
+执行时加上 -v 参数，可以看到每个别名的实际链接地址。
+
+根据名字删除
+```
+git remote master
+```
+
+
+### 推送到远程库
+
+```
+git push <远程主机名> <本地分支名>:<远程分支名>
+```
+
+如果省略远程分支名，则表示将本地分支推送与之存在**”追踪关系”**的远程分支(通常两者同名)，如果该远程分支不存在，则会被新建。
+
+常用用法：
+
+```
+git push origin master
+```
+
+如果当前分支与远程分支之间存在追踪关系(同名)，则本地分支和远程分支都可以省略。
+
+```
+git push origin
+```
+
+如果当前分支只有一个追踪分支，那么主机名都可以省略。
+
+```
+git push
+```
+
+如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push
+
+```
+git push -u origin master
+```
+上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
+
+
+如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支。
+```
+git push origin :dev
+```
+这里只填写了远程分支名dev，表示删除origin的dev分支
+
+### 删除分支
+
+上面方法可以用于删除远程分支
+
+本地分支删除方法：
+
+```
+git branch -d <branchname>
+```
+
+
+
+## 分支管理
+
+### 创建分支
+
+```
+git checkout -b <name>
+```
+或
+```
+git switch -c <name>
+```
+`-b`/`-c`表示创建并切换，相当于
+
+```
+git branch <name>
+git checkout <name>
+```
+
+### 切换分支
+
+```
+git checkout <name>
+```
+也可以
+```
+git switch <name>
+```
+
+### 查看当前分支
+
+```
+git branch
+```
+
+`git branch`命令会列出所有分支，当前分支前面会标一个`*`号
+
+### 合并某分支到当前分支
+
+```
+git merge dev
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
